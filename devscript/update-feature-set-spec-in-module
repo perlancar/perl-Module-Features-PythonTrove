@@ -25,19 +25,17 @@ while (my $cl = <$fh>) {
         die "Invalid line $. in classifiers.txt, must be in /^FOO( :: BAR)+/ form: $cl";
     }
     my ($fname, $fval) = ($1, $2);
-    if ($FEATURES_DEF{features}{$fname}) {
-        push @{ $FEATURES_DEF{features}{$fname}{schema}[1]{of}[0][1]{in} }, $fval;
-        push @{ $FEATURES_DEF{features}{$fname}{schema}[1]{of}[1][1]{of}[1]{in} }, $fval;
-    } else {
-        $FEATURES_DEF{features}{$fname} = {
-            schema => ['any*', {
-                of=>[
-                    ['str*', {in=>[]}],
-                    ['array*', {of=>['str*', {in=>[]}]}],
-                ],
-            }],
-        };
-    }
+    $fname =~ s/\W+/_/g;
+    $FEATURES_DEF{features}{$fname} //= {
+        schema => ['any*', {
+            of=>[
+                ['str*', {in=>[]}],
+                ['array*', {min_len=>1, of=>['str*', {in=>[]}]}],
+            ],
+        }],
+    };
+    push @{ $FEATURES_DEF{features}{$fname}{schema}[1]{of}[0][1]{in} }, $fval;
+    push @{ $FEATURES_DEF{features}{$fname}{schema}[1]{of}[1][1]{of}[1]{in} }, $fval;
 }
 
 $path = "$Bin/../lib/Module/Features/PythonTrove.pm";
