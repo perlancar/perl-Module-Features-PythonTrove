@@ -14,7 +14,7 @@ our %FEATURES_DEF;
 # BEGIN FRAGMENT id=def
 %FEATURES_DEF = %{ {
   features => {
-    Development_Status => {
+    "Development Status" => {
       schema => [
         "any*",
         {
@@ -427,7 +427,7 @@ our %FEATURES_DEF;
         },
       ],
     },
-    Intended_Audience => {
+    "Intended Audience" => {
       schema => [
         "any*",
         {
@@ -679,7 +679,7 @@ our %FEATURES_DEF;
         },
       ],
     },
-    Natural_Language => {
+    "Natural Language" => {
       schema => [
         "any*",
         {
@@ -826,7 +826,7 @@ our %FEATURES_DEF;
         },
       ],
     },
-    Operating_System => {
+    "Operating System" => {
       schema => [
         "any*",
         {
@@ -939,7 +939,7 @@ our %FEATURES_DEF;
         },
       ],
     },
-    Programming_Language => {
+    "Programming Language" => {
       schema => [
         "any*",
         {
@@ -1822,22 +1822,18 @@ variable:
  our %FEATURES = (
      features => {
          PythonTrove => {
-             # we use underscore (Development_Status instead of "Development
-             # Status") because feature names in Module::Features need to be
-             # /^\w+$/. feature values need not be.
+             "Development Status" => "3 - Alpha",
 
-             "Development_Status" => "3 - Alpha",
-
-             "Intended_Audience" => "Developers",
+             "Intended Audience" => "Developers",
 
              "License" => [
                  "OSI Approved :: Artistic License",
                  "OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
              ],
 
-             "Natural_Language" => "Indonesian",
+             "Natural Language" => "Indonesian",
 
-             "Programming_Language" => "Perl",
+             "Programming Language" => "Perl",
 
              "Environment" => "Console",
 
